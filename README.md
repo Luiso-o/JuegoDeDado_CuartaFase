@@ -27,16 +27,26 @@ GET /players/ranking: devuelve el ranking medio de todos los jugadores/as del si
 GET /players/ranking/loser: devuelve al jugador/a con peor porcentaje de éxito.
 GET /players/ranking/winner: devuelve al jugador con peor porcentaje de éxito.
 
-- Fase 1
-Persistencia: utiliza como base de datos MySQL.
+- Fase 3
+Añade seguridad: incluye autenticación por JWT en todos los accesos a las URL's del microservicio.
 
--Interfaz del proyecto en swuagger
-![Swagger](https://github.com/Luiso-o/JuegoDeDados_SegundaFase/assets/128043647/63f467fb-d9c2-4251-b287-8c229dcbc36a)
+1)-OPENAPI SWAGGER
+![Captura1](https://github.com/Luiso-o/JuegoDeDado_CuartaFase/assets/128043647/aac97443-c315-45ed-a261-64f556691404)
 
--MiDB_partidas
-![Mysql_Partidas](https://github.com/Luiso-o/JuegoDeDados_SegundaFase/assets/128043647/59e22b31-f8c9-47b2-8d2e-ae48ec58ed29)
+2)-REGISTER
+![Captura2](https://github.com/Luiso-o/JuegoDeDado_CuartaFase/assets/128043647/4c6842f5-2cd7-4967-afc7-c2366ff498d8)
 
--MiDB_jugadores
-![Mysql_Jugadores](https://github.com/Luiso-o/JuegoDeDados_SegundaFase/assets/128043647/c483bd3c-0960-4935-8222-e78591078ed4)
+![Captura3](https://github.com/Luiso-o/JuegoDeDado_CuartaFase/assets/128043647/ec95d44e-9ecb-4e76-94f0-8e30c38c36a1)
+
+3)-LOGIN 
+![Captura4](https://github.com/Luiso-o/JuegoDeDado_CuartaFase/assets/128043647/dd075a5e-1d84-428b-9612-44714e13f0e4)
+
+4)-AUTHORITATION
+![Captura5](https://github.com/Luiso-o/JuegoDeDado_CuartaFase/assets/128043647/db79c841-8ff0-409b-9096-4f51746ed70a)
+
+5)-UPDATE USER AUTHENTICATION
+![Captura6](https://github.com/Luiso-o/JuegoDeDado_CuartaFase/assets/128043647/dcfcfcfb-ee65-41ba-898c-e858f2257eb8)
+
+![Captura7](https://github.com/Luiso-o/JuegoDeDado_CuartaFase/assets/128043647/f16410b4-4ee4-4c01-954f-d77a09f5375d)
 
 
