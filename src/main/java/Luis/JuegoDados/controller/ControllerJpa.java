@@ -5,10 +5,9 @@ import Luis.JuegoDados.model.dto.PartidaDtoJpa;
 import Luis.JuegoDados.model.entity.JugadorEntityJpa;
 import Luis.JuegoDados.model.services.JugadorServiceJpa;
 import Luis.JuegoDados.model.services.PartidaServiceJpa;
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
@@ -25,7 +24,7 @@ import java.util.Map;
 @AllArgsConstructor
 @Builder
 @RequestMapping("Jugador")
-@OpenAPIDefinition(info = @Info(title = "Juego de Dados API",version = "6.0",description = "API para gestionar jugadores y partidas en el juego de dados"))
+@SecurityRequirement(name = "bearerauth")
 public class ControllerJpa {
 
     @Autowired
@@ -33,20 +32,6 @@ public class ControllerJpa {
 
     @Autowired
     private final PartidaServiceJpa partidaServiceJpa;
-
-    @Operation(summary = "Crea un nuevo jugador", description = "devuelve un objeto jugador,recibirá un parametro de tipo String, si no recibe nada devolverá un Anónimo")
-    @ApiResponse(responseCode = "200", description = "Nuevo Jugador Guardado con éxito")
-    @ApiResponse(responseCode = "400", description = "Solicitud incorrecta")
-    @ApiResponse(responseCode = "500", description = "Error interno, Revise response status 500")
-    @PostMapping
-    public ResponseEntity<JugadorDtoJpa> crearNuevoUsuario
-            (@Nullable
-             @RequestParam
-             @Pattern(regexp = "^[a-zA-Z]*$",message = "El nombre debe contener solo letras") String nombre)
-    {
-        JugadorDtoJpa jugadorNuevo = jugadorServiceJpa.crearJugador(nombre);
-        return ResponseEntity.ok(jugadorNuevo);
-    }
 
     @Operation(summary = "Actualiza el nombre de un Jugador", description = "Actualizará el nombre del jugador correspondiente al id introducido")
     @ApiResponse(responseCode = "200", description = "Nombre de jugador actualizado con éxito")

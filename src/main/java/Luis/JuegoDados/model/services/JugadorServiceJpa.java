@@ -3,10 +3,13 @@ package Luis.JuegoDados.model.services;
 import Luis.JuegoDados.model.dto.JugadorDtoJpa;
 import Luis.JuegoDados.model.entity.JugadorEntityJpa;
 import Luis.JuegoDados.model.entity.PartidaEntityJpa;
+import Luis.JuegoDados.model.entity.Role;
 import Luis.JuegoDados.model.repository.JugadorRepositoryJpa;
 import Luis.JuegoDados.model.repository.PartidaRepositoryJpa;
+import Luis.JuegoDados.model.dto.AuthResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.webjars.NotFoundException;
@@ -21,24 +24,24 @@ import java.util.stream.Collectors;
 public class JugadorServiceJpa {
 
     private JugadorRepositoryJpa jugadorRepositoryJpa;
-
     private PartidaRepositoryJpa partidaRepositoryJpa;
+    private PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
 
-    /**
-     * Crea un nuevo jugador en el sistema.
-     * <p>
-     * Este método permite la creación de un nuevo jugador en el sistema con el nombre proporcionado.
-     * Si el nombre es nulo o está en blanco, se asignará el nombre "Anónimo" al jugador creado.
-     *
-     * @param nombre El nombre del jugador. Puede ser nulo o en blanco.
-     * @return Un objeto JugadorDtoJpa que representa al jugador recién creado.
-     */
-    public JugadorDtoJpa crearJugador(String nombre){
-        JugadorEntityJpa jugador = JugadorEntityJpa.builder()
+    public AuthResponse register(String nombre, String email, String password){
+        JugadorEntityJpa usuario = JugadorEntityJpa.builder()
+                .email(email)
+                .password(passwordEncoder.encode(password))
                 .nombre(filtraNombre(nombre))
+                .porcentajeExito(0)
+                .role(Role.USER)
                 .build();
-       JugadorEntityJpa jugadorCreado = jugadorRepositoryJpa.save(jugador);
-        return pasarEntidadADto(jugadorCreado);
+
+        jugadorRepositoryJpa.save(usuario);
+
+        return AuthResponse.builder()
+                .token(jwtService.getToken(usuario))
+                .build();
     }
 
     /**
