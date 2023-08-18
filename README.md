@@ -1,4 +1,4 @@
-# JuegoDeDados_segundaFase
+# JuegoDeDados_TerceraFase
 ApiRest Crud, Juego de dados  persistiendo MysqlWorkbench como base de datos, @Maven @Workbench @Swuagger 
 
 El juego de dados se juega con dos dados. En caso de que el resultado de la suma de ambos dados sea menor o igual a 7, la partida será ganada, si no es perdida. Un jugador/a puede ver un listado de todas las tiradas que ha realizado y el porcentaje de éxito.
